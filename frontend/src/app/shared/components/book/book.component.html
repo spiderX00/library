@@ -1,0 +1,29 @@
+<mat-card class="book">
+  <mat-card-header class="book__header">
+    <mat-card-title class="book__title">{{node.title}}</mat-card-title>
+    <mat-card-subtitle class="book__subtitle">By: {{node.author}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [ngSrc]="coverURL" (error)="changeSource($event)" width="1000" height="350" class="book__picture"
+    loading="eager">
+  <mat-card-content class="book__content flex flex-wrap">
+    <section class="book__paragraph">
+      <p class="flex align-center color-darker"><mat-icon>library_books</mat-icon>&nbsp;&nbsp; Number of readings:
+        {{node.numberOfReading}}</p>
+      <p class="flex align-center color-darker"><mat-icon>view_array</mat-icon>&nbsp;&nbsp;ISBN code: {{node.isbncode}}
+      </p>
+      <p class="flex align-center color-darker"><mat-icon>date_range</mat-icon>&nbsp;&nbsp;Published: {{node.dateAdded |
+        date:'mediumDate'}}</p>
+    </section>
+  </mat-card-content>
+  <mat-card-actions class="book__actions flex justify-center gap-1">
+    @if (node.rented) {
+    <a type="button" mat-raised-button color="warn">
+      Not available
+    </a>
+    }
+    <a type="button" mat-flat-button color="accent" routerLink="/details/{{node.id}}">Details</a>
+    @if (node.dateRemoved) {
+    <a type="button" mat-flat-button color="warn" routerLink="/details/{{node.id}}">Not in Library</a>
+    }
+  </mat-card-actions>
+</mat-card>

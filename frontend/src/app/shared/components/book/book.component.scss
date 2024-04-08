@@ -1,0 +1,65 @@
+@import "include-media";
+
+// VARIABLES
+$color-darker: #666;
+$color-accent: #e7ecee;
+$color-border: #212121;
+$color-warn-lighter: #eacbcb;
+$color-header: $color-darker;
+$color-title: white;
+$color-background: transparent;
+$small-fixed-width: 350px;
+$fixed-width: 400px;
+
+.book {
+    background-color: $color-background;
+    border-radius: 0.4rem;
+    border: 1px solid;
+    border-color: $color-darker;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 2em;
+    width: $small-fixed-width;
+
+    &:focus,&:hover {
+        border-color: $color-warn-lighter;
+    }
+
+    &__picture {
+        height: 250px;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    &__content {
+        height: 100%;
+        padding-top: 16px;
+    }
+
+    &__header {
+        font-weight: 500;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 16px;
+
+        .book__picture {
+            border-radius: 50%;
+        }
+
+        .book__title {
+            color: white;
+        }
+
+        .book__subtitle {
+            color: $color-header;
+        }
+    }
+
+    &__paragraph {
+        display: block;
+        color: $color-accent;
+        text-align: center;
+        font-size: 1em;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+}

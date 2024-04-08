@@ -1,0 +1,43 @@
+@if (booksService.$node | async; as node) {
+    <div class="container container--expand">
+        <div class="row around-xs">
+            <div class="col-xs-12 col-sm-4">
+                <div class="box">
+                    <img class="img-fixed-width" [ngSrc]="cover.getCoverURL(node.isbncode)" (error)="changeSource($event)"
+                        width="400" height="400" priority>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <div class="box">
+                    <section class="details">
+                        <h3 class="details__title">{{ node.title }}</h3>
+                        <p>ISBN: {{ node.isbncode }}</p>
+                        <p>By: {{ node.author }}</p>
+                        <p>Published: {{ node.dateAdded | date:'mediumDate' }}</p>
+                        <p>Number of readings: {{ node.numberOfReading }}</p>
+                        <p class="details__plot">{{ node.plot }}</p>
+                        <p>
+                            <ng-container *ngIf="node.dateRemoved; else bookButtons">
+                                <button mat-flat-button color="warn">Not in Library</button>
+                            </ng-container>
+                            <ng-template #bookButtons>
+                                <ng-container *ngIf="node?.user?.id === userData.id; else borrowButton">
+                                    <button mat-flat-button color="primary" (click)="returnBook(node)">
+                                        <mat-icon>book</mat-icon> Return book
+                                    </button>
+                                </ng-container>
+                                <ng-template #borrowButton>
+                                    <button mat-flat-button color="primary" (click)="borrow(node)">
+                                        <mat-icon>book</mat-icon>
+                                        {{ node.rented ? 'Not available' : 'Borrow' }}
+                                    </button>
+                                </ng-template>
+                            </ng-template>
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}

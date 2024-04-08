@@ -1,0 +1,53 @@
+@import "include-media";
+
+$color-dark: #666;
+$color-lighter: #e1dcc5;
+$background-login-form: $color-dark;
+$color: $color-dark;
+$fixed-width: 400px;
+$small-fixed-width: 350px;
+
+.login {
+    font-weight: 700;
+    background: $background-login-form;
+    width: 100%;
+    border-radius: 4px;
+    text-align: center;
+    padding: 1em;
+    color: $color;
+
+    mat-label {
+        color: white;
+    }
+
+    // Media queries
+    @include media(">=phone") {
+        min-width: $small-fixed-width;
+    }
+    @include media(">=tablet") {
+        min-width: $fixed-width;
+    }
+
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+        display: none;
+    }
+
+    &__sign_in {
+        color: white;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__field {
+        width: 100%;
+    }
+
+    &__submit {
+        width: auto;
+        margin-bottom: 22px;
+    }
+}

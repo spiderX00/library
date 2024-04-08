@@ -1,0 +1,18 @@
+<mat-toolbar class="toolbar">
+    <a type="button" mat-icon-button color="accent" routerLink="/home" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+    </a>
+    <span class="spacer"></span>
+    @if (routeControl) {
+    <a type="button" disabled mat-button color="accent" routerLink="/home" routerLinkActive="active">
+        <mat-icon>perm_identity</mat-icon> {{userData.name}} {{userData.lastName}}
+    </a>
+    <a type="button" mat-button color="accent" (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon> Logout
+    </a>
+    } @else {
+    <a type="button" mat-button color="accent" routerLink="/login" routerLinkActive="active">
+        Login
+    </a>
+    }
+</mat-toolbar>
