@@ -46,15 +46,21 @@ export class DetailsComponent implements OnInit {
   public returnBook(book: Book) {
     if (this.authService.isAuthenticated) {
       const user = this.authService.getUserData() as User;
-      this.borrowService.returnBook(user.id as number, book).subscribe();
-      location.reload();
+      this.borrowService.returnBook(user.id as number, book)
+        .subscribe({
+          next: () => location.reload(),
+          error: (err) => console.log(err)
+        });
     }
   }
 
   public borrow(book: Book) {
     if (this.authService.isAuthenticated) {
-      this.borrowService.borrowBook(this.userData.id as number, book).subscribe();
-      location.reload();
+      this.borrowService.borrowBook(this.userData.id as number, book)
+        .subscribe({
+          next: () => location.reload(),
+          error: (err) => console.log(err)
+        });
     } else {
       this.router.navigate(['login']);
     }

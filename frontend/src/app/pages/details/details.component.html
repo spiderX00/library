@@ -1,10 +1,10 @@
 @if (booksService.$node | async; as node) {
     <div class="container container--expand">
-        <div class="row around-xs">
-            <div class="col-xs-12 col-sm-4">
+        <div class="row between-xs">
+            <div class="col-xs-12 col-sm-4 flex positioning">
                 <div class="box">
                     <img class="img-fixed-width" [ngSrc]="cover.getCoverURL(node.isbncode)" (error)="changeSource($event)"
-                        width="400" height="400" priority>
+                        width="350" height="350" priority>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-8">

@@ -1,17 +1,19 @@
 @import "include-media";
 
 $color-darker: #645c79;
-$img-fixed-width: 400px;
-$img-fixed-height: 400px;
+$fixed-width: 350px;
+$fixed-height: 350px;
+
+.positioning {
+    @include media("<tablet") {
+        justify-content: center
+    }
+}
 
 .img-fixed-width {
-    @include media(">=tablet") {
-        max-width: $img-fixed-width;
-        max-height: $img-fixed-height;
-    }
-    @include media("<tablet") {
-        max-width: 100%;
-    }
+    max-width: 100%;
+    width: $fixed-width;
+    height: $fixed-height;
 }
 
 .details {

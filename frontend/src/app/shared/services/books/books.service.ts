@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { Book } from '../../interfaces/book.interface';
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from '../books-store/books-state';
+import { Page } from '../../interfaces/page.interface';
 
 const API_ENDPOINT = 'http://localhost:8080/api/books';
 
@@ -28,8 +29,8 @@ CRUD Methods for consuming RESTful API
 
   private apiUrl: string = API_ENDPOINT;
 
-  public findAll({ pageNumber = DEFAULT_PAGE_INDEX, pageSize = DEFAULT_PAGE_SIZE }: { pageNumber?: number, pageSize?: number }) {
-    return this.http.get(`${this.apiUrl}/all`, {
+  public findAll({ pageNumber = DEFAULT_PAGE_INDEX, pageSize = DEFAULT_PAGE_SIZE }: { pageNumber?: number, pageSize?: number }): Observable<Page<Book>> {
+    return this.http.get<Page<Book>>(`${this.apiUrl}/all`, {
       ...this.httpOptions, params: {
         pageNumber, pageSize
       }

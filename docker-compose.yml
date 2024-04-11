@@ -13,13 +13,13 @@ services:
       - db
     env_file:
       .env
-  # Our Angular Frontend
-#  frontend:
+#  web:
+#    image: nginx
 #    build:
 #      dockerfile: Dockerfile
 #      context: ./frontend
 #    ports:
-#      - 4200:4200
+#      - "80:80"
 #    links:
 #      - api
   db:
